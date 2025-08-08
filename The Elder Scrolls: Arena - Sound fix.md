@@ -1,4 +1,4 @@
-[**SOLUTION**]
+**SOLUTION**
 
 If you're playing The Elder Scrolls: Arena through the Heroic Games Launcher on Linux and have no sound, this is because the game uses MIDI for its soundtrack. Here's how I solved this problem by setting up TiMidity++ as a MIDI synthesizer.
 
@@ -6,7 +6,7 @@ If you're playing The Elder Scrolls: Arena through the Heroic Games Launcher on 
 
 First, install TiMidity++ and a good general MIDI soundfont:
 
-`sudo dnf install timidity++ fluid-soundfont-gm`
+```sudo dnf install timidity++ fluid-soundfont-gm```
 
 **Step 2: Configure TiMidity**
 
