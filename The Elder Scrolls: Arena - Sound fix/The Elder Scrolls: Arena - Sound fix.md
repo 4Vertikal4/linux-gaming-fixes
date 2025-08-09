@@ -1,5 +1,16 @@
 **SOLUTION**
 
+
+#### System Information
+
+
+    OS: Fedora 41 and 42 Workstation
+    CPU: 12th Gen Intel i5-12400F
+    GPU: NVIDIA RTX 3060 Ti
+    RAM: 16GB
+    Heroic installation method: Flatpak (system-wide)
+    Wine version: Wine-GE-Proton8-26. This solution should also work on the newer versions like: GE-Proton10-3 or higher.
+
 If you're playing The Elder Scrolls: Arena through the Heroic Games Launcher on Linux and have no sound, this is because the game uses MIDI for its soundtrack. Here's how I solved this problem by setting up TiMidity++ as a MIDI synthesizer.
 
 **Step 1: Install TiMidity++ and SoundFont**
