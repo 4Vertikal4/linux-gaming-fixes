@@ -1,0 +1,18 @@
+# Development stuff (private)
+scripts/
+work/
+venv/
+models/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Game files
+*.pak
+*.uasset
+*.locres
+
+# Keep only release files
+!release/*.zip
