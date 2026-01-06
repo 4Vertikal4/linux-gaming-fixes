@@ -43,6 +43,6 @@ The fix was confirmed working on the following configuration:
 *   **OS:** Fedora Linux 42 (Workstation Edition) - Flatpak Runtime
 *   **CPU:** 12th Gen Intel(R) Core(TM) i5-12400F (12 Threads)
 *   **GPU:** NVIDIA GeForce RTX 3060 Ti LHR
-*   **RAM:** 16 GB
+*   **RAM:** 32 GB
 *   **Driver:** NVIDIA Proprietary
 *   **Launcher:** Heroic Games Launcher 2.18.1 "Waterfall Beard"
