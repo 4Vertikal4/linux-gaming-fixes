@@ -48,3 +48,43 @@ Jeśli modyfikacja fontów okaże się niemożliwa (silnik odrzuca wszystko poza
 - **Fonty w grze:** \`Games/Heroic/Metal Wolf Chaos XD/rom/font/\`
 
 **Motto:** "Because I'm the President of the United States of America!" - Michael Wilson (i my też się nie poddamy).
+------------------------------
+# 🇵🇱 Misja: Przywrócenie Polskich Znaków w Metal Wolf Chaos XD
+**Ostatnia aktualizacja:** 07.01.2026 (Po nieudanym teście "Rosyjskiego Granatu")
+**Status:** Diagnostyka zakończona. Blokada techniczna silnika.
+
+---
+
+## 🔍 Wnioski z Diagnostyki (CO WIEMY?)
+1. **Baza danych:** Tłumaczenie SQLite jest w 100% gotowe (UTF-8).
+2. **Silnik (General Arcade):** Posiada "twardy" filtr ASCII dla wersji angielskiej.
+3. **Wynik Testu Głównego (07.01):** Podmiana GŁÓWNYCH plików czcionek (`MWC_Font.dds` oraz `.ccm`) na wersję rosyjską **NIE WYŚWIETLIŁA cyrylicy**.
+4. **Ostateczna Diagnoza:** Gra w trybie angielskim ignoruje wszystko powyżej kodu ASCII 127. Nawet jeśli dorysujemy litery w pliku graficznym, silnik i tak ich nie wyświetli, dopóki "myśli", że operuje na standardowym alfabecie łacińskim.
+
+---
+
+## 🛠️ Plan Działania na przyszłość (Eksperymentalny)
+
+### OPCJA A: "Infiltracja Językowa" (Nowy pomysł)
+Zamiast nadpisywać angielski, moglibyśmy spróbować wgrać polskie tłumaczenie w miejsce **Języka Rosyjskiego** lub **Chińskiego** (które natywnie obsługują szerokie zestawy znaków).
+- **Zadanie:** Sprawdzić, jak wymusić w grze język rosyjski (np. przez SteamID/GOG config) i sprawdzić, czy wtedy polskie znaki w bazie zostaną "przepuszczone".
+- **Ryzyko:** Gra może mieć osobne fonty dla UI i napisów.
+
+### OPCJA B: "Podmiana wewnątrz-ASCII" (Brute Force)
+Jeśli opcja A zawiedzie, można spróbować podmienić znaki specjalne, które *są* w ASCII (np. `^`, `~`, `[`, `{`), na grafiki polskich liter w pliku DDS.
+- **Zadanie:** Sprawdzić w `MWC_Font.dds`, które znaki ASCII 0-127 są najmniej używane.
+- **Zadanie:** Skryptowo zamienić w bazie `ą` -> `[` i sprawdzić, czy w grze pojawi się `[`.
+
+### OPCJA C: "Biała Flaga" (Czytelność ponad estetykę)
+Jeśli powyższe zawiodą, pozostaje uruchomienie `TOOL_Fix_ASCII.py`.
+- **Zaleta:** 100% czytelności, brak znaków zapytania.
+- **Wada:** Brak "ogonków" (ą, ć, ę...).
+
+---
+
+## 📂 Stan Techniczny
+- **Oryginalne czcionki:** Przywrócone (MWC_Font.dds).
+- **Baza robocza:** `work/texts_may30_PL.db` (zachowuje polskie znaki).
+- **GitHub:** Zaktualizowany o logi i plan.
+
+**Prezydenckie podsumowanie:** Bitwa o fonty nie została wygrana, ale wywiad zebrał kluczowe dane. Wilson wróci do walki innym razem.
