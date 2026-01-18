@@ -1,0 +1,34 @@
+# PhyreEngine - MWC XD / General Arcade Variant
+# Based on RYHPT header analysis
+
+idstring "RYHP"
+get TAG long        # Powinno być 'T'
+get DATA_START long  # To nasze 0x8D7
+
+# Skaczemy do właściwego początku danych Phyre
+goto DATA_START
+
+idstring "PHYR"
+get VER long
+get PLATFORM long
+get FILES long
+
+# Prosty skaner dla plików DDS wewnątrz kontenera
+# Skoro 'strings' znalazł ścieżki, spróbujemy je wyłuskać
+for i = 0 < FILES
+    get OFFSET long
+    get SIZE long
+    get ZSIZE long
+    get NAME_OFF long
+    
+    savepos TMP
+    goto NAME_OFF
+    get NAME string
+    goto TMP
+    
+    if ZSIZE == 0 || ZSIZE == SIZE
+        log NAME OFFSET SIZE
+    else
+        clog NAME OFFSET ZSIZE SIZE
+    endif
+next i

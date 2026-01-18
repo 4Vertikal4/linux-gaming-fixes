@@ -3,6 +3,7 @@ scripts/
 work/
 venv/
 models/
+docs/
 *.log
 
 # Python
