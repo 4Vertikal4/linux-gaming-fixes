@@ -1,19 +1,45 @@
-# Development stuff (private)
-scripts/
-work/
-venv/
-models/
-docs/
-*.log
-
-# Python
+# === Python & System ===
 __pycache__/
 *.py[cod]
+venv/
+*.log
+.DS_Store
 
-# Game files
+# === Game Assets (Heavy Files) ===
+# Absolutny zakaz wrzucania plików gry
 *.pak
 *.uasset
 *.locres
+*.phyre
+*.dds
 
-# Keep only release files
+# === Working Directories ===
+# Brudnopisy, które nie powinny trafić do repo
+work/
+models/
+
+# === Phyre Work Zone (NOWE) ===
+# Ignoruj wszystko w strefie roboczej (tekstury, kontenery)...
+phyre_work/*
+# ...ALE śledź dokumentację i logi operacyjne!
+!phyre_work/README.md
+!phyre_work/mission_logs/
+!phyre_work/mission_logs/*
+!phyre_work/modified/.gitkeep
+
+# === Development ===
+# Zmieniono: Zalecam śledzenie skryptów i dokumentacji.
+# Jeśli nadal chcesz je ukrywać, odkomentuj poniższe linie:
+# scripts/
+# docs/
+
+# === Tools ===
+# Ignorujemy same binaria narzędzi (jeśli są duże), ale zostawiamy skrypty/readme
+# Przykładowo, jeśli nie chcesz wrzucać exe/linux binaries:
+tools/quickbms/quickbms
+tools/quickbms/quickbms.exe
+
+# === Releases ===
+# Ignoruj wszystko w release, poza gotowymi paczkami
+release/*
 !release/*.zip
