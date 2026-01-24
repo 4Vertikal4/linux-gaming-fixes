@@ -218,3 +218,5 @@ Ponieważ struktura nagłówka General Arcade jest nietypowa, przejdziemy do met
     Metoda Raw Scan: Zmodyfikujemy skrypt BMS, aby skanował cały plik w poszukiwaniu ciągu PHYR zamiast polegać na błędnych wskaźnikach z nagłówka.
 
     GIMP Runda 2: Edycja graficzna przycisków po udanej ekstrakcji.
+------------------------
+Dalsze grzebanie w silniku gry będzie opisane w dzienniku znajdującym się w /phyre_work
