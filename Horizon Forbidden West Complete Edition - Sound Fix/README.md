@@ -1,48 +1,51 @@
-# Horizon Forbidden West Complete Edition - Audio Fix & Shader Tweaks (Heroic/Epic)
+📋 Horizon Forbidden West Complete Edition - Stan Diagnostyki (Herioc/Epic)
 
-## The Issue
-On systems like Fedora (Rawhide/42) using **Heroic Games Launcher (Flatpak)**, users may experience the following behavior:
+Data aktualizacji: Styczeń 2026
+Obecny Status
 
-1.  **Cold Boot Lag:** The first launch takes a significant amount of time due to heavy shader compilation.
-2.  **Audio Failure (Launch):** Often, after loading, the game starts with **no audio**.
-3.  **Audio Failure (Fast Travel):** Sound may cut out specifically after using Fast Travel to a new biome, causing a CPU spike due to new shader compilation.
+Użytkownicy na systemach takich jak Fedora (Rawhide/42) korzystający z Heroic Games Launcher (Flatpak) doświadczają następujących problemów:
 
-The audio failure is caused by the sound server (PipeWire/PulseAudio) timing out while the CPU is 100% utilized by shader compilation (VKD3D/DX12).
+    Brak wzrostu cache shaderów (DX12/VKD3D): Gra nie zapisuje na dysk nowo skompilowanych shaderów, przez co każdy start wiąże się z długą kompilacją od zera. Plik vkd3d-proton.cache.write nie jest tworzony po wyjściu z gry.
 
-## The Fix
+    Losowa awaria dźwięku: Dźwięk może nie działać przy starcie gry lub zanikać podczas szybkiej podróży (Fast Travel), prawdopodobnie z powodu wyczerpania zasobów CPU podczas kompilacji shaderów.
 
-The fix involves significantly increasing audio latency tolerance and optimizing shader caching storage to prevent constant recompilation.
+Co zostało przetestowane i uznane za NIEROZWIĄZANIE
 
-### 1. Heroic Settings
-Go to **Game Settings** -> **Advanced**.
+Poniższa konfiguracja nie doprowadziła do trwałego rozwiązania problemu z cache'owaniem shaderów. Stanowi jedynie zapis podjętych prób.
+1. Skrypt opakowujący ("Smart Wrapper")
 
-### 2. Environment Variables
-Add the following variables to the "Environment Variables" section.
+Aby zapobiec utracie danych i wymusić wyższy limit deskryptorów plików, używany był skrypt uruchamiany jako "Wrapper Command" w Heroic.
 
-> **Warning:** Do NOT put terminal commands (like `ulimit`) in this section. It will break the launch process.
+    Skrypt tylko chronił istniejący plik cache, ale nie wymuszał jego zapisu przez VKD3D.
 
-| Variable | Value | Description |
-| :--- | :--- | :--- |
-| `PROTON_AUDIO_BACKEND` | `pipewire` | Forces the correct audio backend. |
-| `PULSE_LATENCY_MSEC` | `300` | **THE FIX:** Sets audio latency tolerance to 300ms. Prevents sound death during heavy load spikes (Launch & Fast Travel). |
-| `PROTON_EAC_RUNTIME` | `1` | Helps with Easy Anti-Cheat compatibility environment. |
-| `VKD3D_CONFIG` | `pipeline_library_app_cache,skip_cleanup` | Optimizes DX12 shader pipeline and prevents cache deletion. |
-| `VKD3D_SHADER_CACHE_PATH` | `/home/vertikal/Games/Heroic/Shaders` | **User defined path:** Keeps DX12 caches safe from updates/wipes. |
-| `__GL_SHADER_DISK_CACHE` | `1` | Enables Nvidia disk cache. |
-| `__GL_SHADER_DISK_CACHE_PATH` | `/home/vertikal/Games/Heroic/Shaders` | **User defined path:** Stores Nvidia GL cache in the safe folder. |
-| `__GL_SHADER_DISK_CACHE_SIZE` | `10000` | Sets Nvidia cache size to 10GB (default is often too small for HFW). |
-| `__GL_SHADER_DISK_CACHE_SKIP_CLEANUP` | `1` | Prevents Nvidia driver from deleting older shaders. |
+2. Zmienne środowiskowe (bezskuteczne)
 
-### 3. Other Settings
-*   **GameMode:** Enable "Use GameMode" (check the box).
-*   **Wine Version:** Use the latest **GE-Proton** (e.g., GE-Proton9-23 or newer).
+Poniższe zmienne, mimo szczegółowego testowania, nie sprawiły, że gra zaczęła zapisywać cache shaderów:
 
-## Verified System Spec
-The fix was confirmed working on the following configuration:
+    VKD3D_CONFIG=no_upload_hvv,pipeline_library_app_cache
 
-*   **OS:** Fedora Linux 42 (Workstation Edition) - Flatpak Runtime
-*   **CPU:** 12th Gen Intel(R) Core(TM) i5-12400F (12 Threads)
-*   **GPU:** NVIDIA GeForce RTX 3060 Ti LHR
-*   **RAM:** 32 GB
-*   **Driver:** NVIDIA Proprietary
-*   **Launcher:** Heroic Games Launcher 2.18.1 "Waterfall Beard"
+    PULSE_LATENCY_MSEC=300
+
+    WINE_FD_LIMIT=524288
+
+    __GL_SHADER_DISK_CACHE=1
+
+    __GL_SHADER_DISK_CACHE_SIZE=10000
+
+    WINE_RT_AUDIO=1
+
+3. Inne działania
+
+    Wyłączenie GameMode i EAC w ustawieniach Heroic.
+
+    Ręczne zarządzanie plikami cache (vkd3d-proton.cache, .write).
+
+Wnioski i przyszłe kierunki
+
+Podstawowy problem pozostaje nierozwiązany: VKD3D-Proton w konfiguracji Flatpak nie inicjuje zapisu cache shaderów na dysk dla gry Horizon Forbidden West. Obecny stan to impas (stalemate).
+
+Potrzebne dalsze badania nad:
+
+    Głębszą analizą logów VKD3D (VKD3D_DEBUG=all) w kontekście Flatpaka.
+
+    Testowaniem innych flag VKD3D_CONFIG. Na przykład, w przypadku gry Starfield dla użytkowników kart AMD kluczową dla stabilności okazała się flaga force_host_cached. Warto sprawdzić, czy ta lub podobna flaga (np. force_host_cached,pipeline_library_app_cache) nie wymusi w końcu zapisu cache w HFW.
