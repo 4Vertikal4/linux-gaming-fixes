@@ -57,3 +57,51 @@ Musimy zaimplementować algorytm **"De-swizzle"** (Linearize):
 3. Po edycji: wykonać operację odwrotną (Re-swizzle) przed wstrzyknięciem do gry.
 
 **Wniosek:** Jesteśmy w posiadaniu surowych danych tekstury. Przeszkodą pozostała jedynie permutacja bloków danych.
+
+----------------
+
+Data: 1 Lutego 2026
+Cel: Spolszczenie głównych tekstur UI (Menu Główne).
+1. STATUS BIEŻĄCY
+
+    Dialogi/Napisy: 100% Spolszczone (Metoda: Injection + Font Remapping).
+
+    Tekstury UI: W trakcie prac nad plikiem menu_common_en_US.phyre.
+
+2. DANE TECHNICZNE (Hard Data)
+
+    Format pliku: BC7 (Block Compression 7, DirectX 11).
+
+    Rozdzielczość: 1152x1152 pikseli.
+
+    Struktura pliku (Extracted): Plik .dds wyciągnięty z kontenera Phyre.
+
+    Nagłówek: DX10 Header (148 bajtów).
+
+    Blok danych: 16 bajtów (4x4 piksele).
+
+3. DIAGNOZA "SWIZZLINGU" (Układu pamięci)
+
+    Objaw: Obraz w GIMP jest czytelny, ale "pocięty" w paski i ma przekłamane kolory ("tęcza").
+
+    Próba 1 (Tile Linear): Skrypt 16_Phyre_Swizzler.py.
+
+        Wynik: Widoczne napisy "NEW GAME", "OPTIONS", ale obraz pocięty i zaszumiony kolorystycznie.
+
+        Wniosek: Jesteśmy blisko struktury, ale mamy przesunięcie danych (Alignment).
+
+    Próba 2 (Morton/Z-Curve): Skrypt 17_Phyre_Morton.py.
+
+        Wynik: Totalny szum (kasza).
+
+        Wniosek: Silnik NIE używa standardowego Mortona. Ślepa uliczka.
+
+4. GLÓWNY PROBLEM (Alignment/Przesunięcie)
+
+    Przyczyna "Tęczy": Nagłówek ma 148 bajtów. Blok BC7 ma 16 bajtów.
+
+        148 / 16 = 9.25 (reszta 4 bajty).
+
+        Komputer czyta dane od połowy bloku. To powoduje, że kolory są błędne.
+
+    Wymagane działanie: Musimy przesunąć start odczytu o 12 bajtów (padding), aby trafić w początek bloku (148 + 12 = 160, co dzieli się przez 16).
