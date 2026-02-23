@@ -105,3 +105,90 @@ Cel: Spolszczenie głównych tekstur UI (Menu Główne).
         Komputer czyta dane od połowy bloku. To powoduje, że kolory są błędne.
 
     Wymagane działanie: Musimy przesunąć start odczytu o 12 bajtów (padding), aby trafić w początek bloku (148 + 12 = 160, co dzieli się przez 16).
+--------------------
+aport Operacyjny: ODZYSKANIE KOLORÓW (ALIGNMENT FIX)
+
+Data: 1 Lutego 2026 (Koniec sesji)
+Status: PRZEŁOM TECHNICZNY (Kolory naprawione / Tekst czytelny)
+Cel: Eliminacja błędów renderowania tekstur UI (efekt "Tęczy/Szumu").
+🛑 Problem
+
+Poprzednie próby "odkręcania" (Deswizzling) tekstury MENUTEX_130_02 (1152x1152) kończyły się generowaniem obrazu o zniekształconych kolorach i strukturze (cyfrowa kasza), mimo teoretycznie poprawnych algorytmów.
+🕵️‍♂️ Analiza Śledcza (Przyczyna Źródłowa)
+
+Zidentyfikowano błąd WYRÓWNANIA DANYCH (Data Alignment).
+
+    Struktura BC7: Dane są zapisywane w blokach po 16 bajtów.
+
+    Nagłówek DX10: Ma rozmiar 148 bajtów.
+
+    Matematyka Błędu: 148 / 16 = 9, reszta 4.
+
+        Silnik/Skrypt czytał dane zaczynając od 4. bajtu bloku, co powodowało przesunięcie bitowe i całkowite zniszczenie kolorów.
+
+    Wymagany Padding: Aby wyrównać start danych do wielokrotności 16, silnik gry dodaje 12 bajtów zer po nagłówku (148 + 12 = 160, co dzieli się przez 16).
+
+🛠️ Podjęte Działania
+
+Stworzono narzędzie diagnostyczne 18_Phyre_Alignment_Tool.py.
+
+    Tryb CLEAN: Wyciął nagłówek, usunął 12 bajtów paddingu (z przesunięcia 148-160) i dokleił nagłówek z powrotem.
+
+🔬 Wynik Wizualny (Dowód)
+
+Plik menu_clean_stripes.dds otwarty w GIMP:
+
+    KOLORY: Idealne (Czysta czerwień, biel, szarość). Brak szumu RGB.
+
+    TREŚĆ: Wyraźnie czytelne napisy "NEW GAME", "LOAD GAME", "OPTIONS".
+
+    STRUKTURA: Obraz nadal jest "poszatkowany" (Tile Linear) i odwrócony lustrzanie (Mirror), co jest naturalnym stanem surowej tekstury w pamięci konsoli.
+
+🚀 Plan na następną sesję
+
+Mamy już napisany skrypt 18_Phyre_Final_Tile.py, który łączy naprawę alignmentu z algorytmem deswizzlingu.
+
+    Unswizzle: Użyć 18_Phyre_Final_Tile.py (łączy usunięcie paddingu + poukładanie kafelków).
+
+    GIMP: Odbić obraz lustrzanie (Flip Horizontal).
+
+    Edycja: Podmienić tekst na POLSKI.
+
+    Reswizzle: Odwrócić proces (Flip -> Reswizzle -> Dodanie paddingu dla silnika).
+------------
+----------------
+
+# 📝 Raport Operacyjny: FIASKO AUTOMATYKI I ZMIANA TAKTYKI
+**Data:** 10.02.2026
+**Status:** TAKTYCZNY ODWROT DO METODY "BRUTE FORCE"
+**Cel:** Finalizacja strategii edycji tekstury menu głównego.
+
+## 💥 Analiza Porażki (Incident Report)
+Podjęto próbę użycia skryptu `18_Phyre_Final_Tile.py`, który miał jednocześnie naprawić kolory (Alignment) i poskładać pocięty obraz (Unswizzle).
+- **Wynik:** Obraz wyjściowy (`menu_combo_fix.dds`) był całkowicie nieczytelny ("cyfrowa kasza").
+- **Przyczyna:** Algorytm zakładał standardowe kafelkowanie GPU 64x64 piksele. Rzeczywisty układ pamięci w tym pliku jest inny (prawdopodobnie proste paski poziome lub niestandardowe makrobloki), przez co skrypt pomieszał poprawne dane.
+
+## ✅ Potwierdzony Sukces (Alignment)
+Narzędzie `18_Phyre_Alignment_Tool.py` (tryb `clean`) zadziałało poprawnie.
+- Usunięcie **12 bajtów paddingu** (wyrównanie nagłówka 148 -> 160 bajtów) całkowicie naprawiło błędy kolorów (zniknęła "tęcza").
+- **Stan obecny:** Mamy plik `menu_clean_stripes.dds`, który jest:
+  1. **Kolorystycznie poprawny** (RGB OK).
+  2. **Czytelny** (widać tekst).
+  3. **Pocięty w pasy** (Strips).
+  4. **Odwrócony lustrzanie** (Mirrored).
+
+## 🗺️ Plan Działania: Metoda "Na Paski" (Strip Surgery)
+Rezygnujemy z prób zgadywania algorytmu "De-swizzle". Przechodzimy do ręcznej edycji na poziomie surowych pasków.
+
+1. **Przygotowanie:**
+   - `Alignment_Tool.py clean` -> Uzyskanie pliku z poprawnymi kolorami.
+2. **Edycja (GIMP):**
+   - Odbicie lustrzane poziome (dla czytelności).
+   - Zamalowanie angielskich napisów bezpośrednio na paskach.
+   - Nałożenie polskiego tekstu ("NOWA GRA", "OPCJE") z uwzględnieniem cięć (jeśli litera wypada na łączeniu pasków – dopasowanie ręczne).
+   - Ponowne odbicie lustrzane (przywrócenie stanu surowego).
+3. **Wstrzyknięcie:**
+   - `Alignment_Tool.py restore` -> Przywrócenie 12 bajtów paddingu.
+   - Wgranie do kontenera `.phyre`.
+
+**Konkluzja:** Mamy pełną kontrolę nad pikselami. Algorytm układania nie jest nam już potrzebny do sukcesu.
