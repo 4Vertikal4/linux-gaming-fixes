@@ -4,40 +4,31 @@
 Polska lokalizacja gry Metal Wolf Chaos XD (wersja GOG/Steam).
 
 ## 📦 Instalacja
+# Metal Wolf Chaos XD – Polskie Tłumaczenie (wersja robocza)
 
-📁 Skąd kopiować i dokąd – konkretnie (bez gdybania)
-1. Baza danych
+## Pliki do wgrania (po kompilacji/modyfikacjach)
 
-Skąd:
-/home/vertikal/Github_Projects/linux-gaming-fixes/Metal Wolf Chaos XD - Polish translation/work/texts_may30_PL.db
+### Baza danych
+- **Źródło:** `work/texts_may30_PL.db`
+- **Cel:** `~/Games/Heroic/Metal Wolf Chaos XD/Media/Texts/texts_may30.db`
 
-Dokąd:
-/home/vertikal/Games/Heroic/Metal Wolf Chaos XD/Media/Texts/texts_may30.db
-bash
+### Czcionki
+- **Źródło:** `work/Czcionka/MWC_Font_ru_RU.dds` i `MWC_Font_ru_RU.ccm`
+- **Cel:** `~/Games/Heroic/Metal Wolf Chaos XD/rom/font/`
 
-cp "/home/vertikal/Github_Projects/linux-gaming-fixes/Metal Wolf Chaos XD - Polish translation/work/texts_may30_PL.db" "/home/vertikal/Games/Heroic/Metal Wolf Chaos XD/Media/Texts/texts_may30.db"
+## Konfiguracja
+- W Heroic Launcher ustaw język gry na **Rosyjski**.
 
-2. Czcionki
+## Testy
+- Po wgraniu sprawdź menu i dialogi – polskie znaki powinny być widoczne (w tym Ł, ą, ć itp.).
 
-Skąd:
+## Uwagi
+- Zawsze twórz kopię zapasową oryginalnych plików przed podmianą.
+- W razie problemów przywróć kopię.
 
-    /home/vertikal/Github_Projects/linux-gaming-fixes/Metal Wolf Chaos XD - Polish translation/work/Czcionka/MWC_Font_ru_RU.dds
-
-    /home/vertikal/Github_Projects/linux-gaming-fixes/Metal Wolf Chaos XD - Polish translation/work/Czcionka/MWC_Font_ru_RU.ccm
-
-Dokąd:
-/home/vertikal/Games/Heroic/Metal Wolf Chaos XD/rom/font/
-bash
-
-cp "/home/vertikal/Github_Projects/linux-gaming-fixes/Metal Wolf Chaos XD - Polish translation/work/Czcionka/MWC_Font_ru_RU.dds" "/home/vertikal/Games/Heroic/Metal Wolf Chaos XD/rom/font/"
-cp "/home/vertikal/Github_Projects/linux-gaming-fixes/Metal Wolf Chaos XD - Polish translation/work/Czcionka/MWC_Font_ru_RU.ccm" "/home/vertikal/Games/Heroic/Metal Wolf Chaos XD/rom/font/"
-
-3. Po wgraniu
-
-    Ustaw język gry w Heroic na rosyjski.
-
-    Uruchom grę i testuj.
-
+## Skrypty (opcjonalnie)
+- `scripts/08_Final_Remap_Infiltrator_v2.py` – mapuje polskie znaki na zastępcze.
+- `scripts/09_Fix_Missing_Columns_v2.py` – dodaje brakujące kolumny w bazie.
 
 Gdy będzie gotowe:
 1. Pobierz plik z zakładki Releases
