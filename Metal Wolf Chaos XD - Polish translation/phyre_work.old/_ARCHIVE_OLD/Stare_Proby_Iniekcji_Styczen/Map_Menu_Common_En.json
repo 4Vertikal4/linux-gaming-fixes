@@ -1,0 +1,56 @@
+[
+    {
+        "id": 0,
+        "original_name": "MENUTEX_130_01.dds",
+        "start_offset": 2551,
+        "end_offset": 446172,
+        "width": 1024,
+        "height": 1024,
+        "filename": "raw_00_MENUTEX_130_01.dds_1024x1024.dds"
+    },
+    {
+        "id": 1,
+        "original_name": "MENUTEX_130_02.dds",
+        "start_offset": 446300,
+        "end_offset": 2211265,
+        "width": 2048,
+        "height": 2048,
+        "filename": "raw_01_MENUTEX_130_02.dds_2048x2048.dds"
+    },
+    {
+        "id": 2,
+        "original_name": "story_tex01.dds",
+        "start_offset": 2211393,
+        "end_offset": 16369767,
+        "width": 4096,
+        "height": 4096,
+        "filename": "raw_02_story_tex01.dds_4096x4096.dds"
+    },
+    {
+        "id": 3,
+        "original_name": "MENUTEX_900_02.dds",
+        "start_offset": 16369895,
+        "end_offset": 19897420,
+        "width": 2048,
+        "height": 2048,
+        "filename": "raw_03_MENUTEX_900_02.dds_2048x2048.dds"
+    },
+    {
+        "id": 4,
+        "original_name": "MENUTEX_150_00.dds",
+        "start_offset": 19897548,
+        "end_offset": 21662513,
+        "width": 2048,
+        "height": 2048,
+        "filename": "raw_04_MENUTEX_150_00.dds_2048x2048.dds"
+    },
+    {
+        "id": 5,
+        "original_name": "MENUTEX_510_50.dds",
+        "start_offset": 21662641,
+        "end_offset": 25187743,
+        "width": 2048,
+        "height": 2048,
+        "filename": "raw_05_MENUTEX_510_50.dds_2048x2048.dds"
+    }
+]

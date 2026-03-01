@@ -22,16 +22,16 @@ models/
 # Ignoruj wszystko w strefie roboczej (tekstury, kontenery)...
 phyre_work/*
 # ...ALE śledź dokumentację i logi operacyjne!
-!phyre_work/README.md
-!phyre_work/mission_logs/
-!phyre_work/mission_logs/*
-!phyre_work/modified/.gitkeep
+#!phyre_work/README.md
+#!phyre_work/mission_logs/
+#!phyre_work/mission_logs/*
+#!phyre_work/modified/.gitkeep
 
 # === Development ===
 # Zmieniono: Zalecam śledzenie skryptów i dokumentacji.
 # Jeśli nadal chcesz je ukrywać, odkomentuj poniższe linie:
-# scripts/
-# docs/
+scripts/
+docs/
 
 # === Tools ===
 # Ignorujemy same binaria narzędzi (jeśli są duże), ale zostawiamy skrypty/readme
