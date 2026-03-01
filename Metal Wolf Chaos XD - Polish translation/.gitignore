@@ -21,6 +21,7 @@ models/
 # === Phyre Work Zone (NOWE) ===
 # Ignoruj wszystko w strefie roboczej (tekstury, kontenery)...
 phyre_work/*
+phyre_work.old/*
 # ...ALE śledź dokumentację i logi operacyjne!
 #!phyre_work/README.md
 #!phyre_work/mission_logs/
