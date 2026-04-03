@@ -86,5 +86,7 @@ Goal: Restore background music in classic titles that rely on MIDI without requi
 - User‑overridable soundfont and configuration paths.
 - More robust detection heuristics and opt‑in logging verbosity.
 
-## Acknowledgements
-- Current review on: https://github.com/flathub/com.heroicgameslauncher.hgl/pull/222
+## Status
+- **Merged to flathub**: [PR #222](https://github.com/flathub/com.heroicgameslauncher.hgl/pull/222) (Mar 1, 2026)
+- **Accepted by Heroic Games Launcher maintainers**
+- Available in: `com.heroicgameslauncher.hgl` Flatpak
