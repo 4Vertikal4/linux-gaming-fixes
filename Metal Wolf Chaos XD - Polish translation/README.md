@@ -1,44 +1,17 @@
-# Metal Wolf Chaos XD - Polskie Tłumaczenie
+# 🇵🇱 Metal Wolf Chaos XD - Spolszczenie
 
-## 🎮 O Projekcie
-Polska lokalizacja gry Metal Wolf Chaos XD (wersja GOG/Steam).
+**Aktualizacja:** Kwiecień 2026  
+Spolszczenie obejmuje tłumaczenie tekstów (odprawy, dialogi, maile, opisy broni, interfejs HUD). Z przyczyn technicznych narzuconych przez silnik PhyreEngine, napisy w menu głównym (Nowa Gra, Opcje) pozostały w języku angielskim, co zapewnia stabilność gry.
 
-## 📦 Instalacja
-# Metal Wolf Chaos XD – Polskie Tłumaczenie (wersja robocza)
+## ⚠️ UWAGA: Wymagania wstępne
+Aby polskie znaki diakrytyczne wyświetlały się poprawnie, gra musi zostać uruchomiona w **rosyjskiej wersji językowej**. Jest to zabieg techniczny omijający blokadę znaków ASCII w wersji angielskiej.
+- W ustawieniach Heroic/GOG zmień język gry na **Russian**.
 
-## Pliki do wgrania (po kompilacji/modyfikacjach)
+## 🛠 Instrukcja Instalacji
+1. Pobierz plik `MWC_XD_Spolszczenie_PL.tar.gz` z zakładki **Releases**.
+2. Wypakuj zawartość paczki do folderu z zainstalowaną grą (nadpisując pliki).
+3. **KROK INSTALACJI MENU:** Aby uzyskać amerykańskie menu w trybie rosyjskim, wejdź do `Media/D3D11/`, skopiuj 5 plików z końcówką `_en_US.phyre` i zmień ich nazwy na `_ru_RU.phyre` (nadpisując istniejące tam pliki).
+4. Uruchom grę w trybie rosyjskim.
 
-### Baza danych
-- **Źródło:** `work/texts_may30_PL.db`
-- **Cel:** `~/Games/Heroic/Metal Wolf Chaos XD/Media/Texts/texts_may30.db`
-
-### Czcionki
-- **Źródło:** `work/Czcionka/MWC_Font_ru_RU.dds` i `MWC_Font_ru_RU.ccm`
-- **Cel:** `~/Games/Heroic/Metal Wolf Chaos XD/rom/font/`
-
-## Konfiguracja
-- W Heroic Launcher ustaw język gry na **Rosyjski**.
-
-## Testy
-- Po wgraniu sprawdź menu i dialogi – polskie znaki powinny być widoczne (w tym Ł, ą, ć itp.).
-
-## Uwagi
-- Zawsze twórz kopię zapasową oryginalnych plików przed podmianą.
-- W razie problemów przywróć kopię.
-
-## Skrypty (opcjonalnie)
-- `scripts/08_Final_Remap_Infiltrator_v2.py` – mapuje polskie znaki na zastępcze.
-- `scripts/09_Fix_Missing_Columns_v2.py` – dodaje brakujące kolumny w bazie.
-
-Gdy będzie gotowe:
-1. Pobierz plik z zakładki Releases
-2. Rozpakuj do folderu z grą
-3. Graj po polsku!
-
-## Status
-- [ ] Ekstrakcja plików
-- [ ] Tłumaczenie
-- [ ] Testy
-
----
-*Fanowskie tłumaczenie przy użyciu AI Bielik/SpeakLeash*
+## 📝 Uwagi techniczne
+Spolszczenie wykorzystuje iniekcję bazy SQLite oraz modyfikację atlasu czcionek bitmapowych (`.dds`).
