@@ -62,9 +62,9 @@ Alternatywnie, jeśli przeglądasz to repozytorium lokalnie, plik znajduje się 
 🛠️ KROK 2: Instalacja Spolszczenia
 2.1 Podstawowa instalacja
 
-    Upewnij się, że gra jest zamknięta.
-    Wypakuj zawartość archiwum MWC_XD_Spolszczenie_PL.tar.gz bezpośrednio do głównego folderu z grą (tam gdzie znajduje się plik wykonywalny gry).
-    Potwierdź nadpisanie plików (tak, to bezpieczne - właśnie dlatego zrobiliśmy backup).
+- Upewnij się, że gra jest zamknięta.
+- Wypakuj zawartość archiwum MWC_XD_Spolszczenie_PL.tar.gz bezpośrednio do głównego folderu z grą (tam gdzie znajduje się plik wykonywalny gry).
+- Potwierdź nadpisanie plików (tak, to bezpieczne - właśnie dlatego zrobiliśmy backup).
 
 ### 2.2 Instalacja menu angielskiego (Obejście PhyreEngine)
 **Uwaga:** To już zostało zrobione za Ciebie! W paczce `MWC_XD_Spolszczenie_PL.tar.gz` znajdują się przygotowane pliki angielskiego menu z już zmienionymi nazwami na `_ru_RU.phyre`. 
@@ -75,13 +75,13 @@ Wystarczy, że wypakujesz całą zawartość archiwum do folderu z grą - pliki 
     
 ✅ KROK 3: Weryfikacja (Sprawdzenie czy działa)
 
-    Uruchom grę przez Heroic (upewnij się, że masz wybrane GE-Proton-latest)
-    W pierwszym ekranie (intro) lub w pierwszym dialogu z Prezydentem Wilsonem powinieneś zobaczyć polskie znaki (np. "Witaj, Michael" zamiast "Welcome, Michael")
-    Jeśli widzisz krzaki zamiast polskich znaków (np. "Witaj, Michael" zamiast "Witaj, Michael"):
-        Sprawdź czy masz ustawiony język Russian w pliku goggame-1943046668.info
-        Sprawdź czy używasz GE-Proton-latest
-    Jeśli menu jest po rosyjsku (cyrylica):
-        Wróć do kroku 2.2 i upewnij się, że skopiowałeś pliki _en_US.phyre jako _ru_RU.phyre
+- Uruchom grę przez Heroic (upewnij się, że masz wybrane GE-Proton-latest)
+- W pierwszym ekranie (intro) lub w pierwszym dialogu z Prezydentem Wilsonem powinieneś zobaczyć polskie znaki (np. "Witaj, Michael" zamiast "Welcome, Michael")
+- Jeśli widzisz krzaki zamiast polskich znaków (np. "Witaj, Michael" zamiast "Witaj, Michael"):
+- Sprawdź czy masz ustawiony język Russian w pliku goggame-1943046668.info
+- Sprawdź czy używasz GE-Proton-latest
+- Jeśli menu jest po rosyjsku (cyrylica):
+- Wróć do kroku 2.2 i upewnij się, że skopiowałeś pliki _en_US.phyre jako _ru_RU.phyre
         
 🗑️ Jak usunąć spolszczenie?
 Jeśli chcesz wrócić do wersji angielskiej:
@@ -100,9 +100,9 @@ W Heroic: Prawy przycisk na grze → Manage → Uninstall, a następnie zainstal
 📝 Informacje techniczne dla moderów
 Spolszczenie wykorzystuje:
 
-    Iniekcję bazy SQLite (teksty gry przechowywane są w bazie danych)
-    Modyfikację atlasu czcionek bitmapowych (.dds) dla wyświetlania polskich znaków
-    Podmianę plików językowych w locie (technika _en_US → _ru_RU)
+- Iniekcję bazy SQLite (teksty gry przechowywane są w bazie danych)
+- Modyfikację atlasu czcionek bitmapowych (.dds) dla wyświetlania polskich znaków
+- Podmianę plików językowych w locie (technika _en_US → _ru_RU)
 
 Więcej narzędzi deweloperskich i skryptów (Text Sniper, Amputatory) znajdziesz w moim prywatnym repozytorium: My-AI-Gaming-Translator.
 
