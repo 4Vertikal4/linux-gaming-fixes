@@ -43,12 +43,14 @@ cp -r Media Media_backup_oryginal
 
 # Lub jeśli wolisz backup tylko folderu D3D11 (mniejszy rozmiar)
 cp -r Media/D3D11 Media/D3D11_backup_oryginal
+```
 
 Przywracanie oryginału (jeśli coś pójdzie nie tak):
 ```bash
 
 rm -rf Media/D3D11
 cp -r Media/D3D11_backup_oryginal Media/D3D11
+```
 
 📥 KROK 1: Pobieranie
 Najnowszą wersję spolszczenia pobierz z zakładki Releases:
@@ -85,9 +87,11 @@ Wystarczy, że wypakujesz całą zawartość archiwum do folderu z grą - pliki 
 Jeśli chcesz wrócić do wersji angielskiej:
 Sposób 1 (jeśli robiłeś backup):
 
+```
 cd ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/
 rm -rf Media
 cp -r Media_backup_oryginal Media
+```
 # Pamiętaj też zmienić język z powrotem na English w pliku goggame-1943046668.info
 
 Sposób 2 (reinstalacja gry):
