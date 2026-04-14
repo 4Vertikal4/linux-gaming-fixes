@@ -17,6 +17,14 @@ Aby polskie znaki diakrytyczne (ą, ć, ę, ł, ń, ó, ś, ż, ź) wyświetlał
 
 ---
 
+## 📥 Pobieranie
+Najnowszą wersję spolszczenia pobierzesz w formacie archiwum:
+**[MWC_XD_Spolszczenie_PL.tar.gz](MWC_XD_Spolszczenie_PL.tar.gz)** 
+
+*(Alternatywnie, najnowsze wydania znajdziesz zawsze w zakładce **Releases** po prawej stronie).*
+
+---
+
 ## 🛠 Instrukcja Instalacji
 
 1. Pobierz plik `MWC_XD_Spolszczenie_PL.tar.gz` z zakładki **Releases**.
