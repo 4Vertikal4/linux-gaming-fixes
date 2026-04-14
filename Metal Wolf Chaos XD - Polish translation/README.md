@@ -5,7 +5,7 @@ Spolszczenie obejmuje tłumaczenie tekstów (odprawy, dialogi, maile, opisy bron
 
 ## ⚠️ UWAGA: Wymagania wstępne
 Aby polskie znaki diakrytyczne wyświetlały się poprawnie, gra musi zostać uruchomiona w **rosyjskiej wersji językowej**. Jest to zabieg techniczny omijający blokadę znaków ASCII w wersji angielskiej.
-- W ustawieniach Heroic/GOG zmień język gry na **Russian**.
+- W ustawieniach Heroic/GOG/Steam zmień język gry na **Russian**.
 
 ## 🛠 Instrukcja Instalacji
 1. Pobierz plik `MWC_XD_Spolszczenie_PL.tar.gz` z zakładki **Releases**.
