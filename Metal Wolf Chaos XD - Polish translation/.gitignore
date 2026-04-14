@@ -4,7 +4,3 @@ __pycache__/
 venv/
 *.log
 .DS_Store
-
-# Katalogi tymczasowe i robocze
-work/
-source_and_tools/
