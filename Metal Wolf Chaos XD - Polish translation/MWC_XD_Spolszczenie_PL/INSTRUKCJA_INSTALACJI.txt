@@ -1,0 +1,46 @@
+# 🇵🇱 Metal Wolf Chaos XD - Spolszczenie (Wersja GOG / Steam)
+
+**Autor tłumaczenia:** vertikal  
+**Aktualizacja:** Kwiecień 2026  
+
+Spolszczenie obejmuje 100% tekstów w grze (odprawy, dialogi w trakcie misji, maile, opisy broni oraz interfejs HUD). Z przyczyn technicznych narzuconych przez silnik PhyreEngine, napisy w menu głównym (Nowa Gra, Opcje) pozostały w oryginalnej, angielskiej wersji językowej, co jednak doskonale komponuje się z amerykańskim klimatem gry.
+
+---
+
+## ⚠️ UWAGA: Wymagania wstępne (Kluczowe dla działania!)
+
+Aby polskie znaki diakrytyczne (ą, ć, ę, ł, ń, ó, ś, ż, ź) wyświetlały się poprawnie, **gra musi zostać uruchomiona w rosyjskiej wersji językowej**. Jest to celowy zabieg techniczny mający na celu ominięcie blokady znaków ASCII zaimplementowanej przez twórców w angielskiej wersji gry.
+
+*   **Jeśli używasz Heroic Games Launcher (Linux/Steam Deck):** W ustawieniach gry zmień język na `Russian`.
+*   **Jeśli używasz GOG Galaxy / Steam (Windows):** Właściwości gry -> Język -> `Rosyjski`.
+
+---
+
+## 🛠 Instrukcja Instalacji
+
+Paczka ze spolszczeniem składa się z trzech głównych folderów. Zawartość paczki (foldery `Media` i `rom`) należy skopiować do głównego katalogu z zainstalowaną grą (nadpisując oryginalne pliki). Zaleca się wcześniejsze wykonanie kopii zapasowej.
+
+### KROK 1: Instalacja Bazy Tekstów
+Ten plik zawiera całe polskie tłumaczenie gry.
+*   **Skopiuj plik:** `texts_may30.db` z folderu `Media/Texts/`
+*   **Wklej do:** `[Folder_z_grą]/Media/Texts/`
+
+### KROK 2: Instalacja Polskiej Czcionki
+Ten plik zawiera zmodyfikowany atlas znaków, w którym zaszyto polskie litery ze skorygowanym kerningiem.
+*   **Skopiuj pliki:** `MWC_Font_ru_RU.dds` oraz `MWC_Font_ru_RU.ccm` z folderu `rom/font/`
+*   **Wklej do:** `[Folder_z_grą]/rom/font/`
+
+### KROK 3: Instalacja Menu (Obejście PhyreEngine)
+Zawartość tego folderu wymusza na grze uruchomionej w trybie rosyjskim oryginalnego amerykańskiego menu, zapobiegając pojawieniu się cyrylicy na ekranie tytułowym.
+*   **Skopiuj 5 plików `.phyre`:** z folderu `Media/D3D11/` w paczce
+*   **Wklej do:** `[Folder_z_grą]/Media/D3D11/`
+
+---
+
+## 📝 Informacje techniczne dla moderów
+
+Spolszczenie wymagało niestandardowego podejścia z powodu ograniczeń silnika gry (PhyreEngine):
+
+*   **Baza SQLite:** Teksty zostały wstrzyknięte do kolumny `_ru_RU`, aby wymusić odczyt znaków specjalnych, które są blokowane w kolumnie `_en_US`.
+*   **Przeszczep Glifów:** W pliku `MWC_Font_ru_RU.dds` nadpisano nieużywane znaki cyrylicy i znaki specjalne (np. 'ö', 'í') polskimi glifami. Następnie w bazie danych wykonano remapping znaków (zamieniając np. literę 'ł' na znak 'í', pod którym w atlasie kryje się wrysowane 'ł'). Zapewniło to idealną ostrość czcionki i poprawne odstępy (kerning).
+*   **Kukułcze Jajo (Menu Bypass):** Teksty w menu głównym (np. "NEW GAME") są zaszytymi grafikami `.dds` w kontenerach `.phyre`. Aby uniknąć dekompresji i problemów z offsetami plików binarnego silnika, oryginalne pliki wariantu `en_US` zostały skopiowane i celowo przemianowane na `ru_RU`, co zmusiło grę do wczytania amerykańskich tekstur zamiast rosyjskich w menu tytułowym.
