@@ -77,6 +77,7 @@ cd ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/
 
 # Skopiuj teksty gry (bezpieczne - dodaje/brakuje tylko pliki w rom/)
 cp -r ~/Pobrane/MWC_temp/rom/* rom/
+```
 
 2.2 Instalacja menu angielskiego (Obejście PhyreEngine)
 Uwaga: W paczce znajdują się przygotowane pliki angielskiego menu z już zmienionymi nazwami na _ru_RU.phyre.
@@ -84,29 +85,32 @@ Uwaga: W paczce znajdują się przygotowane pliki angielskiego menu z już zmien
 Skopiuj tylko te konkretne pliki do folderu gry:
 
 # Przejdź do folderu z grą
+```
 cd ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/
-
+```
 # Skopiuj pliki menu (nadpiszą tylko rosyjskie wersje tych plików)
+```
 cp ~/Pobrane/MWC_temp/Media/D3D11/gauge_ru_RU.phyre Media/D3D11/
 cp ~/Pobrane/MWC_temp/Media/D3D11/menu_common_ru_RU.phyre Media/D3D11/
 cp ~/Pobrane/MWC_temp/Media/D3D11/menu_MWC_Brief_ru_RU.phyre Media/D3D11/
 cp ~/Pobrane/MWC_temp/Media/D3D11/menu_MWC_Debrief_ru_RU.phyre Media/D3D11/
 cp ~/Pobrane/MWC_temp/Media/D3D11/menu_MWC_MainGame_ru_RU.phyre Media/D3D11/
+```
 
 Lub jednym poleceniem:
-
+```
 cp ~/Pobrane/MWC_temp/Media/D3D11/*_ru_RU.phyre ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/D3D11/
-
+```
 2.3 Weryfikacja plików
 
 Sprawdź czy pliki są na miejscu:
-
+```
 ls -lh ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/D3D11/*_ru_RU.phyre
-
+```
 Możesz teraz usunąć folder tymczasowy:
-
+```
 rm -rf ~/Pobrane/MWC_temp/
-
+```
 
 ## 🚀 Opcja C: Szybka instalacja skryptem (dla zaawansowanych)
 
