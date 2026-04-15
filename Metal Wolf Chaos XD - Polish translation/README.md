@@ -59,19 +59,71 @@ Najnowszą wersję spolszczenia pobierz z zakładki Releases:
     Rozmiar: ~28 MB
 
 Alternatywnie, jeśli przeglądasz to repozytorium lokalnie, plik znajduje się w głównym katalogu.
-🛠️ KROK 2: Instalacja Spolszczenia
-2.1 Podstawowa instalacja
 
-- Upewnij się, że gra jest zamknięta.
-- Wypakuj zawartość archiwum MWC_XD_Spolszczenie_PL.tar.gz bezpośrednio do głównego folderu z grą (tam gdzie znajduje się plik wykonywalny gry).
-- Potwierdź nadpisanie plików (tak, to bezpieczne - właśnie dlatego zrobiliśmy backup).
+## 🛠️ KROK 2: Instalacja Spolszczenia
 
-### 2.2 Instalacja menu angielskiego (Obejście PhyreEngine)
-**Uwaga:** To już zostało zrobione za Ciebie! W paczce `MWC_XD_Spolszczenie_PL.tar.gz` znajdują się przygotowane pliki angielskiego menu z już zmienionymi nazwami na `_ru_RU.phyre`. 
+### ⚠️ WAŻNE - Struktura paczki
+Paczka `MWC_XD_Spolszczenie_PL.tar.gz` zawiera **tylko** przetłumaczone pliki. 
+**NIE wypakowuj jej bezpośrednio do folderu gry** - to usunie oryginalne pliki gry!
 
-Wystarczy, że wypakujesz całą zawartość archiwum do folderu z grą - pliki te automatycznie nadpiszą rosyjskie menu, zachowując przy tym wymagany przez silnik tryb "rosyjski".
+### 2.1 Podstawowa instalacja (teksty gry)
+1. Upewnij się, że gra jest zamknięta.
+2. Wypakuj archiwum `MWC_XD_Spolszczenie_PL.tar.gz` do **tymczasowego folderu** (np. `~/Pobrane/MWC_temp/`).
+3. Skopiuj **tylko** zawartość folderu `rom/` z wypakowanej paczki do folderu gry:
 
-**Weryfikacja:** Po wypakowaniu w folderze `Media/D3D11/` powinieneś zobaczyć pliki z końcówką `_ru_RU.phyre` (są to oryginalne angielskie pliki, tylko z nazwą sugerującą rosyjską wersję).
+```bash
+# Przejdź do folderu z grą
+cd ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/
+
+# Skopiuj teksty gry (bezpieczne - dodaje/brakuje tylko pliki w rom/)
+cp -r ~/Pobrane/MWC_temp/rom/* rom/
+
+2.2 Instalacja menu angielskiego (Obejście PhyreEngine)
+Uwaga: W paczce znajdują się przygotowane pliki angielskiego menu z już zmienionymi nazwami na _ru_RU.phyre.
+
+Skopiuj tylko te konkretne pliki do folderu gry:
+
+# Przejdź do folderu z grą
+cd ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/
+
+# Skopiuj pliki menu (nadpiszą tylko rosyjskie wersje tych plików)
+cp ~/Pobrane/MWC_temp/Media/D3D11/gauge_ru_RU.phyre Media/D3D11/
+cp ~/Pobrane/MWC_temp/Media/D3D11/menu_common_ru_RU.phyre Media/D3D11/
+cp ~/Pobrane/MWC_temp/Media/D3D11/menu_MWC_Brief_ru_RU.phyre Media/D3D11/
+cp ~/Pobrane/MWC_temp/Media/D3D11/menu_MWC_Debrief_ru_RU.phyre Media/D3D11/
+cp ~/Pobrane/MWC_temp/Media/D3D11/menu_MWC_MainGame_ru_RU.phyre Media/D3D11/
+
+Lub jednym poleceniem:
+
+cp ~/Pobrane/MWC_temp/Media/D3D11/*_ru_RU.phyre ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/D3D11/
+
+2.3 Weryfikacja plików
+
+Sprawdź czy pliki są na miejscu:
+
+ls -lh ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/D3D11/*_ru_RU.phyre
+
+Możesz teraz usunąć folder tymczasowy:
+
+rm -rf ~/Pobrane/MWC_temp/
+
+
+## 🚀 Opcja C: Szybka instalacja skryptem (dla zaawansowanych)
+
+Jeśli korzystasz z **Heroic Games Launcher** na Linux, możesz użyć przygotowanego skryptu:
+
+1. Pobierz oba pliki z zakładki Releases:
+   - `MWC_XD_Spolszczenie_PL.tar.gz`
+   - `install_heroic.sh`
+
+2. Umieść je w tym samym folderze (np. `~/Pobrane/`)
+
+3. Uruchom terminal i wykonaj:
+
+```bash
+cd ~/Pobrane
+bash install_heroic.sh
+```
     
 ✅ KROK 3: Weryfikacja (Sprawdzenie czy działa)
 
