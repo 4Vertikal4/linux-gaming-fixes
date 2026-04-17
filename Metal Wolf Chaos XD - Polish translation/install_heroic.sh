@@ -2,13 +2,11 @@
 # Automatyczny skrypt instalujący dla Heroic Games Launcher
 # URUCHOM TEN SKRYPT Z FOLDERU GDZIE ZNAJDUJE SIĘ PLIK MWC_XD_Spolszczenie_PL.tar.gz
 
-# Kolory dla czytelności
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Sprawdzenie czy paczka istnieje w obecnym katalogu
 if [ ! -f "MWC_XD_Spolszczenie_PL.tar.gz" ]; then
     echo -e "${RED}❌ BŁĄD: Nie znaleziono pliku MWC_XD_Spolszczenie_PL.tar.gz${NC}"
     echo ""
@@ -21,14 +19,12 @@ if [ ! -f "MWC_XD_Spolszczenie_PL.tar.gz" ]; then
     exit 1
 fi
 
-# Ścieżka gry (domyślna dla Heroic, można nadpisać argumentem)
 GAME_PATH="${1:-~/Games/Heroic/Metal Wolf Chaos XD}"
 
 echo -e "${YELLOW}=== Instalator Spolszczenia Metal Wolf Chaos XD ===${NC}"
 echo "Ścieżka gry: $GAME_PATH"
 echo ""
 
-# Sprawdzenie czy folder gry istnieje
 if [ ! -d "$GAME_PATH" ]; then
     echo -e "${RED}❌ BŁĄD: Nie znaleziono folderu gry: $GAME_PATH${NC}"
     echo ""
@@ -41,8 +37,7 @@ fi
 
 TEMP_DIR=$(mktemp -d)
 
-# Wypakowanie
-echo -e "${YELLOW}[1/3] Wypakowywanie plików...${NC}"
+echo -e "${YELLOW}[1/4] Wypakowywanie archiwum...${NC}"
 tar -xzf MWC_XD_Spolszczenie_PL.tar.gz -C "$TEMP_DIR"
 
 if [ $? -ne 0 ]; then
@@ -51,33 +46,70 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Kopiowanie tekstów
-echo -e "${YELLOW}[2/3] Kopiowanie przetłumaczonych tekstów...${NC}"
-cp -r "$TEMP_DIR/MWC_XD_Spolszczenie_PL/rom/"* "$GAME_PATH/rom/"
+PACZKA_DIR="$TEMP_DIR/MWC_XD_Spolszczenie_PL"
 
-if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ Błąd podczas kopiowania tekstów${NC}"
+if [ ! -d "$PACZKA_DIR" ]; then
+    echo -e "${RED}❌ Błąd: Nieprawidłowa struktura archiwum${NC}"
     rm -rf "$TEMP_DIR"
     exit 1
 fi
 
-# Kopiowanie menu
-echo -e "${YELLOW}[3/3] Kopiowanie plików menu...${NC}"
-cp "$TEMP_DIR/MWC_XD_Spolszczenie_PL/Media/D3D11/"*_ru_RU.phyre "$GAME_PATH/Media/D3D11/"
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ Błąd podczas kopiowania plików menu${NC}"
-    rm -rf "$TEMP_DIR"
-    exit 1
+echo -e "${YELLOW}[2/4] Instalowanie bazy tekstów...${NC}"
+if [ -f "$PACZKA_DIR/Media/Texts/texts_may30.db" ]; then
+    mkdir -p "$GAME_PATH/Media/Texts/"
+    cp "$PACZKA_DIR/Media/Texts/texts_may30.db" "$GAME_PATH/Media/Texts/"
+    if [ $? -eq 0 ]; then
+        echo "  ✅ texts_may30.db"
+    else
+        echo -e "${RED}  ❌ Błąd kopiowania bazy tekstów${NC}"
+    fi
+else
+    echo -e "${RED}  ❌ Nie znaleziono texts_may30.db w paczce!${NC}"
 fi
 
-# Sprzątanie
+echo -e "${YELLOW}[3/4] Instalowanie czcionek...${NC}"
+KOPIOWANE_CZCIONKI=0
+for plik in MWC_Font_ru_RU.ccm MWC_Font_ru_RU.dds; do
+    if [ -f "$PACZKA_DIR/rom/font/$plik" ]; then
+        cp "$PACZKA_DIR/rom/font/$plik" "$GAME_PATH/rom/font/"
+        if [ $? -eq 0 ]; then
+            echo "  ✅ $plik"
+            ((KOPIOWANE_CZCIONKI++))
+        else
+            echo -e "${RED}  ❌ Błąd kopiowania $plik${NC}"
+        fi
+    else
+        echo -e "${RED}  ❌ Nie znaleziono $plik w paczce!${NC}"
+    fi
+done
+
+echo -e "${YELLOW}[4/4] Instalowanie plików menu...${NC}"
+KOPIOWANE_MENU=0
+for plik in "$PACZKA_DIR"/Media/D3D11/*_ru_RU.phyre; do
+    if [ -f "$plik" ]; then
+        nazwa=$(basename "$plik")
+        cp "$plik" "$GAME_PATH/Media/D3D11/"
+        if [ $? -eq 0 ]; then
+            echo "  ✅ $nazwa"
+            ((KOPIOWANE_MENU++))
+        else
+            echo -e "${RED}  ❌ Błąd kopiowania $nazwa${NC}"
+        fi
+    fi
+done
+
 rm -rf "$TEMP_DIR"
 
 echo ""
-echo -e "${GREEN}✅ Instalacja zakończona sukcesem!${NC}"
+echo -e "${GREEN}=== Instalacja zakończona ===${NC}"
+echo "Zainstalowane elementy:"
+echo "  • Baza tekstów: texts_may30.db"
+echo "  • Czcionki: $KOPIOWANE_CZCIONKI/2"
+echo "  • Pliki menu: $KOPIOWANE_MENU"
 echo ""
 echo "Następne kroki:"
 echo "1. Upewnij się, że w Heroic masz wybrane: GE-Proton-latest"
 echo "2. Sprawdź czy język gry jest ustawiony na Russian (plik goggame-1943046668.info)"
 echo "3. Uruchom grę i sprawdź czy w pierwszym dialogu widzisz polskie znaki"
+echo ""
+echo "Jeśli chcesz usunąć spolszczenie, przywróć folder Media z backupu."
