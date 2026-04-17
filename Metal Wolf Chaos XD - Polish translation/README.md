@@ -69,17 +69,29 @@ Paczka `MWC_XD_Spolszczenie_PL.tar.gz` zawiera **tylko** przetłumaczone pliki.
 ### 2.1 Podstawowa instalacja (teksty gry)
 1. Upewnij się, że gra jest zamknięta.
 2. Wypakuj archiwum `MWC_XD_Spolszczenie_PL.tar.gz` do **tymczasowego folderu** (np. `~/Pobrane/MWC_temp/`).
-3. Skopiuj **tylko** zawartość folderu `rom/` z wypakowanej paczki do folderu gry:
+
+Załóżmy, że wypakowałeś paczkę do `~/Pobrane/MWC_XD_Spolszczenie_PL/`.
+
+### 2.1 Baza danych z tekstami (najważniejsze!)
+To plik zawierający wszystkie przetłumaczone dialogi, maile i opisy:
 
 ```bash
-# Przejdź do folderu z grą
-cd ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/
-
-# Skopiuj teksty gry (bezpieczne - dodaje/brakuje tylko pliki w rom/)
-cp -r ~/Pobrane/MWC_temp/rom/* rom/
+# Skopiuj bazę danych z tekstami
+cp ~/Pobrane/MWC_XD_Spolszczenie_PL/Media/Texts/texts_may30.db \
+   ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/Texts/
 ```
 
-2.2 Instalacja menu angielskiego (Obejście PhyreEngine)
+2.2 Czcionki z polskimi znakami
+Podmieniają rosyjskie znaki na polskie w trybie "rosyjskim":
+```
+cp ~/Pobrane/MWC_XD_Spolszczenie_PL/rom/font/MWC_Font_ru_RU.ccm \
+   ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/rom/font/
+
+cp ~/Pobrane/MWC_XD_Spolszczenie_PL/rom/font/MWC_Font_ru_RU.dds \
+   ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/rom/font/
+```
+
+2.3 Instalacja menu angielskiego (Obejście PhyreEngine)
 Uwaga: W paczce znajdują się przygotowane pliki angielskiego menu z już zmienionymi nazwami na _ru_RU.phyre.
 
 Skopiuj tylko te konkretne pliki do folderu gry:
@@ -101,15 +113,19 @@ Lub jednym poleceniem:
 ```
 cp ~/Pobrane/MWC_temp/Media/D3D11/*_ru_RU.phyre ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/D3D11/
 ```
-2.3 Weryfikacja plików
+2.4 Weryfikacja instalacji
 
-Sprawdź czy pliki są na miejscu:
-```
+Sprawdź czy wszystkie pliki są na miejscu:
+
+# Sprawdź bazę tekstów
+ls -lh ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/Texts/texts_may30.db
+
+# Sprawdź czcionki (powinny być 2 pliki)
+ls -lh ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/rom/font/*_ru_RU.*
+
+# Sprawdź menu (powinny być 5 plików)
 ls -lh ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/D3D11/*_ru_RU.phyre
-```
-Możesz teraz usunąć folder tymczasowy:
-```
-rm -rf ~/Pobrane/MWC_temp/
+
 ```
 
 ## 🚀 Opcja C: Szybka instalacja skryptem (dla zaawansowanych)
@@ -148,7 +164,7 @@ cd ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/
 rm -rf Media
 cp -r Media_backup_oryginal Media
 ```
-# Pamiętaj też zmienić język z powrotem na English w pliku goggame-1943046668.info
+Pamiętaj też zmienić język z powrotem na English w pliku goggame-1943046668.info
 
 Sposób 2 (reinstalacja gry):
 W Heroic: Prawy przycisk na grze → Manage → Uninstall, a następnie zainstaluj ponownie wybierając język angielski.
