@@ -1,0 +1,50 @@
+METAL WOLF CHAOS XD - SPOLSZCZENIE PL
+Windows
+
+1. WYMAGANIA PRZED INSTALACJĄ
+
+   Gra MUSI być uruchomiona w języku ROSYJSKIM.
+
+   Najprostszym sposobem jest zainstalowanie gry od razu z językiem Rosyjski.
+   Wtedy pomiń punkty poniżej i przejdź do instalacji tłumaczenia.
+
+   Jeśli gra jest już zainstalowana po angielsku:
+   1. Otwórz folder z grą w Eksploratorze plików
+   2. Znajdź plik: goggame-1943046668.info
+   3. Otwórz go Notatnikiem lub innym edytorem tekstu
+   4. Znajdź i zmień:
+      "language": "English"     →  "language": "Russian"
+      "languages": ["en-US"]    →  "languages": ["ru-RU.UTF-8"]
+   5. Zapisz plik
+
+2. INSTALACJA TŁUMACZENIA
+
+   Z wypakowanej paczki skopiuj TYLKO poniższe pliki
+   do odpowiednich folderów w katalogu gry:
+
+   Media\Texts\texts_may30.db
+      → [folder_gry]\Media\Texts\    (utwórz folder Texts, jeśli go nie ma)
+
+   rom\font\MWC_Font_ru_RU.ccm
+   rom\font\MWC_Font_ru_RU.dds
+      → [folder_gry]\rom\font\
+
+   Media\D3D11\gauge_ru_RU.phyre
+   Media\D3D11\menu_common_ru_RU.phyre
+   Media\D3D11\menu_MWC_Brief_ru_RU.phyre
+   Media\D3D11\menu_MWC_Debrief_ru_RU.phyre
+   Media\D3D11\menu_MWC_MainGame_ru_RU.phyre
+      → [folder_gry]\Media\D3D11\
+
+   Przykładowe ścieżki:
+   Steam: C:\Program Files (x86)\Steam\steamapps\common\Metal Wolf Chaos XD\
+   GOG:   C:\Program Files (x86)\GOG Galaxy\Games\Metal Wolf Chaos XD\
+
+   NIE wklejaj całych folderów Media\ ani rom\ — nadpiszesz oryginalne pliki gry.
+   Kopiuj wyłącznie wymienione pliki.
+
+3. WERYFIKACJA
+   Po uruchomieniu gry w pierwszym dialogu powinieneś zobaczyć polskie znaki.
+   Menu główne pozostanie po angielsku — to zamierzone.
+
+Pełna dokumentacja: https://github.com/4Vertikal4/linux-gaming-fixes
