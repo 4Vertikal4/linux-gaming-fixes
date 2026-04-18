@@ -126,8 +126,6 @@ ls -lh ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/rom/font/*_ru_RU.*
 # Sprawdź menu (powinny być 5 plików)
 ls -lh ~/Games/Heroic/Metal\ Wolf\ Chaos\ XD/Media/D3D11/*_ru_RU.phyre
 
-```
-
 ## 🚀 Opcja C: Szybka instalacja skryptem (dla zaawansowanych)
 
 Jeśli korzystasz z **Heroic Games Launcher** na Linux, możesz użyć przygotowanego skryptu:
@@ -140,7 +138,7 @@ Jeśli korzystasz z **Heroic Games Launcher** na Linux, możesz użyć przygotow
 
 3. Uruchom terminal i wykonaj:
 
-```bash
+```
 cd ~/Pobrane
 bash install_heroic.sh
 ```
